@@ -1,5 +1,8 @@
 FROM node:latest AS node-builder
 
+ARG VERSION=0.0.0
+ARG COMMIT=unknown
+
 WORKDIR /app
 COPY app/package.json ./
 
@@ -40,6 +43,8 @@ RUN chmod +x entrypoint.sh && \
 	chown -R $APP_UID:$APP_UID /data
 
 COPY --from=dotnet-builder /app/build ./
+ENV SSTATIC_VERSION=$VERSION \
+	SSTATIC_COMMIT=$COMMIT
 
 USER $APP_UID
 EXPOSE 8080

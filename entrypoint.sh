@@ -1,5 +1,9 @@
 #!/bin/sh
 
+echo "sstatic";
+echo "Version: $SSTATIC_VERSION";
+echo "Commit hash: $SSTATIC_COMMIT";
+
 echo "Mapping configuration from environment variables..."
 
 export App__DataRoot="/data"
