@@ -1,0 +1,53 @@
+import { makeStyles, tokens } from "@fluentui/react-components";
+
+export const useDangerStyles = makeStyles({
+	menuItem:
+	{
+		color: tokens.colorStatusDangerForeground1 + " !important",
+
+		"& .fui-MenuItem__icon":
+		{
+			color: tokens.colorStatusDangerForeground1 + " !important"
+		}
+	},
+	buttonPrimary:
+	{
+		"&:not([disabled])":
+		{
+			backgroundColor: tokens.colorStatusDangerBackground3,
+			color: tokens.colorNeutralForegroundStaticInverted,
+
+			"&:hover":
+			{
+				backgroundColor: tokens.colorStatusDangerBackground3Hover,
+
+				"&:active":
+				{
+					backgroundColor: tokens.colorStatusDangerBackground3Pressed
+				}
+			}
+		}
+	},
+	buttonSubtle:
+	{
+		"&:not([disabled])":
+		{
+			color: tokens.colorStatusDangerForeground1,
+
+			"&:hover":
+			{
+				color: tokens.colorStatusDangerForeground2,
+
+				"&:active":
+				{
+					color: tokens.colorStatusDangerForeground3
+				}
+			},
+
+			"& .fui-Button__icon":
+			{
+				color: tokens.colorStatusDangerForeground1 + " !important"
+			}
+		}
+	}
+});

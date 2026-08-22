@@ -1,0 +1,61 @@
+{
+	"$schema": "https://www.schemastore.org/web-manifest-combined.json",
+	"name": "sstatic",
+	"short_name": "sstatic",
+	"description": "A simple, self-hosted file sharing and URL shortening service.",
+	"orientation": "any",
+	"lang": "en",
+	"icons": [
+		{
+			"src": "./assets/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "./assets/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"id": "./?source=pwa",
+	"start_url": "./?source=pwa",
+	"display": "standalone",
+	"display_override": ["window-controls-overlay"],
+
+	"theme_color": "#0f6cbd",
+	"background_color": "#ffffff",
+	"color_scheme_dark": {
+		"background_color": "#292929",
+		"theme_color": "#479ef5"
+	},
+
+	"shortcuts": [
+		{
+			"url": "./shortener?source=pwa",
+			"name": "URL shortener",
+			"icons": [
+				{ "src": "./assets/ic_fluent_cloud_link_24_regular.svg", "sizes": "192x192", "type": "image/svg+xml" }
+			],
+			"short_name": "Links",
+			"description": "Manage your shortened URLs"
+		},
+		{
+			"url": "./files?source=pwa",
+			"name": "Static files",
+			"icons": [
+				{ "src": "./assets/ic_fluent_document_link_24_regular.svg", "sizes": "192x192", "type": "image/svg+xml" }
+			],
+			"short_name": "Files",
+			"description": "Manage your public files"
+		}
+	],
+
+	"share_target": {
+		"action": "./shortener",
+		"method": "GET",
+		"enctype": "application/x-www-form-urlencoded",
+		"params": {
+			"url": "url"
+		}
+	}
+}

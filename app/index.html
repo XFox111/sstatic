@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<base href="/" />
+
+	<link rel="icon" type="image/x-icon" href="./favicon.ico">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="./assets/android-chrome-192x192.png">
+	<link rel="icon" type="image/png" sizes="512x512" href="./assets/android-chrome-512x512.png">
+
+	<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#292929" media="(prefers-color-scheme: dark)">
+	<meta name="color-scheme" content="dark light">
+
+	<title>sstatic</title>
+	<link rel="manifest" href="/app.webmanifest" />
+
+	<style>
+		body {
+			margin: 0;
+			user-select: none;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-color: #292929;
+			}
+		}
+
+		/* width */
+		::-webkit-scrollbar {
+			width: 8px;
+			height: 8px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			background: transparent;
+			border-radius: var(--borderRadiusCircular);
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background-color: var(--colorNeutralStroke1);
+			border-radius: 4px;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			background-color: var(--colorNeutralStroke1Hover);
+		}
+
+		::-webkit-scrollbar-thumb:hover:active {
+			background-color: var(--colorNeutralStroke1Pressed);
+		}
+	</style>
+</head>
+
+<body>
+	<script type="module" src="src/main.tsx"></script>
+</body>
+
+</html>

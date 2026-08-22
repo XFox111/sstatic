@@ -1,0 +1,8 @@
+- [X] Logo
+- [X] PWA
+- [ ] Markdown docs
+- [ ] Docs website
+- [ ] Scalar website
+- [ ] Add more analytics providers
+- [ ] CI/CD
+- [ ] TBD
