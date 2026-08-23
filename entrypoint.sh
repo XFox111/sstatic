@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# if first arg is hash-password, then run the password hashing command and exit
+if [ "$1" = "hash-password" ]; then
+	dotnet SStatic.dll "$@"
+	exit $?
+fi
+
 echo "sstatic";
 echo "Version: $SSTATIC_VERSION";
 echo "Commit hash: $SSTATIC_COMMIT";
@@ -107,4 +113,4 @@ echo "Ensuring data directories exist..."
 mkdir -p "$App__DataRoot/{files,links}"
 
 echo "Starting SStatic..."
-dotnet SStatic.dll
+dotnet SStatic.dll "$@"
