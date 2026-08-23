@@ -29,6 +29,33 @@
 		"theme_color": "#479ef5"
 	},
 
+	"screenshots": [
+		{
+			"src": "./assets/screenshots/shortener-dark.png",
+			"type": "image/png",
+			"sizes": "1499x966",
+			"form_factor": "wide"
+		},
+		{
+			"src": "./assets/screenshots/shortener-light.png",
+			"type": "image/png",
+			"sizes": "1499x966",
+			"form_factor": "wide"
+		},
+		{
+			"src": "./assets/screenshots/files-dark.png",
+			"type": "image/png",
+			"sizes": "1499x966",
+			"form_factor": "wide"
+		},
+		{
+			"src": "./assets/screenshots/files-light.png",
+			"type": "image/png",
+			"sizes": "1499x966",
+			"form_factor": "wide"
+		}
+	],
+
 	"shortcuts": [
 		{
 			"url": "./shortener?source=pwa",
