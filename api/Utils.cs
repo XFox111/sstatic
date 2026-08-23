@@ -65,23 +65,23 @@ public static class Utils
 				if (sb.Length > 0)
 				{
 					sb.Remove(sb.Length - 1, 1);
-					Console.Write("\b \b");
+					Console.Error.Write("\b \b");
 				}
 				continue;
 			}
 
 			if (key.Key is ConsoleKey.W or ConsoleKey.Backspace && key.Modifiers.HasFlag(ConsoleModifiers.Control))
 			{
-				Console.Write(new string('\b', sb.Length) + new string(' ', sb.Length) + new string('\b', sb.Length));
+				Console.Error.Write(new string('\b', sb.Length) + new string(' ', sb.Length) + new string('\b', sb.Length));
 				sb.Clear();
 				continue;
 			}
 
 			sb.Append(key.KeyChar);
-			Console.Write("*");
+			Console.Error.Write("*");
 		}
 
-		Console.WriteLine();
+		Console.Error.WriteLine();
 		return sb.ToString();
 	}
 }

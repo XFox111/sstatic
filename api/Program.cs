@@ -136,23 +136,24 @@ void CreatePasswordHash()
 
 	if (string.IsNullOrEmpty(password))
 	{
-		Console.Write("Enter password: ");
+		Console.Error.Write("Enter password: ");
 		password = Utils.ReadPassword();
 
 		if (string.IsNullOrEmpty(password))
 		{
-			Console.WriteLine("No password was provided.");
+			Console.Error.WriteLine("No password was provided.");
 			return;
 		}
 
-		Console.Write("Repeat password: ");
+		Console.Error.Write("Repeat password: ");
 		if (password != Utils.ReadPassword())
 		{
-			Console.WriteLine("Passwords don't match.");
+			Console.Error.WriteLine("Passwords don't match.");
 			return;
 		}
 	}
 
 	PasswordHasher<object> hasher = new();
-	Console.WriteLine(hasher.HashPassword(null!, password));
+	Console.Write(hasher.HashPassword(null!, password));
+	Console.Error.WriteLine();
 }
