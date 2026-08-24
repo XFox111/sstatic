@@ -13,14 +13,16 @@ export default defineConfig({
 		["meta", { name: "copyright", content: `©${new Date().getFullYear()} Eugene Fox` }],
 		["meta", { name: "lanugage", content: "en_us" }],
 		["meta", { name: "author", content: "Eugene Fox" }],
-		["meta", { property: "og:title", content: "sstatic" }],
-		["meta", { property: "og:description", content: "A simple self-hosted URL shortener and a file server. A perfect companion for your personal website" }],
+		["meta", { property: "og:title", content: "sstatic – A simple self-hosted URL shortener and a file server" }],
+		["meta", { property: "og:description", content: "A perfect companion for your personal website" }],
 		["meta", { property: "og:type", content: "website" }],
 		["meta", { property: "og:url", content: "https://sstatic.xfox111.net" }],
 		["meta", { property: "og:image", content: "/opengraph.png" }],
 		["meta", { property: "og:image:type", content: "image/png" }],
 		["meta", { property: "og:image:width", content: "1200" }],
 		["meta", { property: "og:image:height", content: "675" }],
+		["meta", { property: "og:site_name", content: "sstatic" }],
+		["meta", { property: "twitter:card", content: "summary_large_image" }]
 	],
 	markdown: {
 		config(md)
