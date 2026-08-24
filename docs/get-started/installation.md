@@ -1,5 +1,7 @@
 # Install sstatic
 
+<!--@include: @/parts/wip.md-->
+
 ## Quick start
 
 ```bash

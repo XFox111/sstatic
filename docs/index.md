@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get started
-      link: /markdown-examples
+      link: /installation
     - theme: alt
       text: Source code
       link: https://github.com/xfox111/sstatic
@@ -31,19 +31,3 @@ features:
   - title: Built with Docker
     details: Deploy sstatic in a few minutes with Docker and Docker Compose
 ---
-
----
-
-<picture>
-	<source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/shortener-dark.png">
-	<source media="(prefers-color-scheme: light)" srcset="./assets/screenshots/shortener-light.png">
-	<img alt="">
-</picture>
-
-<br />
-
-<picture>
-	<source media="(prefers-color-scheme: dark)" srcset="./assets/screenshots/files-dark.png">
-	<source media="(prefers-color-scheme: light)" srcset="./assets/screenshots/files-light.png">
-	<img alt="">
-</picture>

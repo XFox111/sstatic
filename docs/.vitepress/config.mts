@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import { groupIconMdPlugin, groupIconVitePlugin } from "vitepress-plugin-group-icons";
+import footnote from "markdown-it-footnote";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -11,6 +12,7 @@ export default defineConfig({
 		config(md)
 		{
 			md.use(groupIconMdPlugin as any);
+			md.use(footnote);
 		}
 	},
 	vite: {
@@ -20,7 +22,7 @@ export default defineConfig({
 	},
 	themeConfig: {
 		logo: {
-			src: "./assets/logo.svg",
+			src: "/assets/logo.svg",
 		},
 		search: {
 			provider: "local"
@@ -31,16 +33,17 @@ export default defineConfig({
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
 			{ text: "Home", link: "/" },
-			{ text: "Docs", link: "/markdown-examples" },
-			{ text: "API reference", link: "/scalar" }
+			{ text: "Docs", link: "/get-started/about" },
+			{ text: "API reference", link: "/scalar.html", target: "_blank" }
 		],
 
 		sidebar: [
 			{
 				text: "Getting started",
 				items: [
-					{ text: "Installation", link: "/installation" },
-					{ text: "Reverse proxy", link: "/reverse-proxy" }
+					{ text: "About sstatic", link: "/get-started/about" },
+					{ text: "Installation", link: "/get-started/installation" },
+					{ text: "Reverse proxy", link: "/get-started/reverse-proxy" }
 				]
 			},
 			{
@@ -54,7 +57,6 @@ export default defineConfig({
 			{
 				text: "Guides",
 				items: [
-					{ text: "Overview", link: "/guides/overview" },
 					{ text: "OpenID Connect", link: "/guides/openid-connect" },
 					{ text: "Multiple domains", link: "/guides/multiple-domains" },
 					{ text: "Analytics", link: "/guides/analytics" },

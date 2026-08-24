@@ -5,6 +5,8 @@
 		"preview": "vitepress preview"
 	},
 	"devDependencies": {
+		"@types/markdown-it-footnote": "^3.0.4",
+		"markdown-it-footnote": "^4.0.0",
 		"vitepress": "^1.6.4",
 		"vitepress-plugin-group-icons": "^1.7.6"
 	}
