@@ -12,6 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: node:26
+    permissions:
+      contents: read
 
     steps:
       - uses: actions/checkout@v7
