@@ -21,6 +21,5 @@ public static partial class ApiEndpoints
 			.WithSummary("Health check")
 			.WithDescription("Check the health of the application.")
 			.WithStatusCode<HealthResponse>(StatusCodes.Status200OK, "Application is healthy.")
-			.WithStatusCode<HealthResponse>(StatusCodes.Status503ServiceUnavailable, "Application is unhealthy.")
-			.ShortCircuit();
+			.WithStatusCode<HealthResponse>(StatusCodes.Status503ServiceUnavailable, "Application is unhealthy.");
 }
