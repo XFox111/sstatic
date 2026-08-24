@@ -6,7 +6,78 @@
 
 version: 2
 updates:
- - package-ecosystem: "devcontainers"
-   directory: "/"
-   schedule:
-     interval: weekly
+
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    assignees:
+      - "XFox111"
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    groups:
+      devcontainers:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/api" # Location of package manifests
+    assignees:
+      - "XFox111"
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    groups:
+      api:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    assignees:
+      - "XFox111"
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    target-branch: "main"
+    assignees:
+      - "XFox111"
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    groups:
+      docker:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/app"
+    target-branch: "main"
+    assignees:
+      - "XFox111"
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    groups:
+      app:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/docs"
+    target-branch: "main"
+    assignees:
+      - "XFox111"
+    schedule:
+      interval: monthly
+    rebase-strategy: disabled
+    groups:
+      docs:
+        patterns:
+          - "*"

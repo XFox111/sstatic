@@ -1,0 +1,41 @@
+name: "Update OpenAPI specification"
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "api/**/Endpoints/**.cs"
+  workflow_dispatch:
+
+jobs:
+  update-openapi-spec:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Build and run sstatic Docker container
+        run: |
+          docker build -t xfox111/sstatic:latest .
+
+          docker run --rm -d --name sstatic -p 8080:8080 \
+            -e SSTATIC_AUTH_USERNAME=test \
+            -e SSTATIC_OIDC_CONFIGURATION=https://example.com/.well-known/openid-configuration \
+            -e SSTATIC_OIDC_CLIENT_ID=test \
+            -e SSTATIC_ENABLE_OPENAPI=true \
+            xfox111/sstatic:latest
+
+          sleep 10;
+          curl -s http://localhost:8080/openapi.yaml -o docs/public/openapi.yaml;
+          docker stop sstatic;
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/public/openapi.yaml
+          git commit -m "Update OpenAPI specification" || echo "No changes to commit"
+          git push origin main
