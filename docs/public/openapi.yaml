@@ -8,9 +8,9 @@ info:
   version: 1.0.0
   summary: API documentation for SStatic server.
 servers:
-  - url: http://localhost:5141/
+  - url: http://localhost:8080/
 paths:
-  /_/auth/user:
+  /auth/user:
     get:
       tags:
         - Auth
@@ -24,7 +24,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetUserResponse'
-  /_/auth/login:
+  /auth/login:
     get:
       tags:
         - Auth
@@ -71,7 +71,7 @@ paths:
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
         '200':
           description: User successfully logged in.
-  /_/auth/oidc-signin:
+  /auth/oidc-signin:
     post:
       tags:
         - Auth
@@ -81,7 +81,7 @@ paths:
       responses:
         '400':
           description: Invalid callback.
-  /_/auth/oidc-logout:
+  /auth/oidc-logout:
     get:
       tags:
         - Auth
@@ -91,7 +91,7 @@ paths:
       responses:
         '400':
           description: Invalid callback.
-  /_/auth/logout:
+  /auth/logout:
     get:
       tags:
         - Auth
@@ -107,7 +107,7 @@ paths:
       responses:
         '200':
           description: OK
-  /_/api/healthz:
+  /api/healthz:
     get:
       tags:
         - Public
@@ -127,7 +127,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HealthResponse'
-  /_/api/info:
+  /api/info:
     get:
       tags:
         - Public
@@ -141,7 +141,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetRuntimeInfoResponse'
-  /_/api/links:
+  /api/links:
     get:
       tags:
         - Links
@@ -272,7 +272,7 @@ paths:
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
       security:
         - Bearer: [ ]
-  '/_/api/links/{slug}':
+  '/api/links/{slug}':
     get:
       tags:
         - Links
@@ -462,7 +462,7 @@ paths:
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
       security:
         - Bearer: [ ]
-  /_/api/tags:
+  /api/tags:
     get:
       tags:
         - Tags
@@ -561,7 +561,7 @@ paths:
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
       security:
         - Bearer: [ ]
-  '/_/api/tags/{id}':
+  '/api/tags/{id}':
     get:
       tags:
         - Tags
@@ -748,7 +748,7 @@ paths:
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
       security:
         - Bearer: [ ]
-  '/_/api/files/{path}':
+  '/api/files/{path}':
     get:
       tags:
         - Files
