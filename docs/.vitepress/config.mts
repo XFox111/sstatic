@@ -6,8 +6,22 @@ import footnote from "markdown-it-footnote";
 export default defineConfig({
 	title: "sstatic",
 	description: "A simple self-hosted URL shortener and a file server. A perfect companion for your personal website.",
+	lang: "en-US",
 	lastUpdated: true,
 	cleanUrls: true,
+	head: [
+		["meta", { name: "copyright", content: `©${new Date().getFullYear()} Eugene Fox` }],
+		["meta", { name: "lanugage", content: "en_us" }],
+		["meta", { name: "author", content: "Eugene Fox" }],
+		["meta", { property: "og:title", content: "sstatic" }],
+		["meta", { property: "og:description", content: "A simple self-hosted URL shortener and a file server. A perfect companion for your personal website" }],
+		["meta", { property: "og:type", content: "website" }],
+		["meta", { property: "og:url", content: "https://sstatic.xfox111.net" }],
+		["meta", { property: "og:image", content: "/opengraph.png" }],
+		["meta", { property: "og:image:type", content: "image/png" }],
+		["meta", { property: "og:image:width", content: "1200" }],
+		["meta", { property: "og:image:height", content: "675" }],
+	],
 	markdown: {
 		config(md)
 		{
@@ -22,7 +36,7 @@ export default defineConfig({
 	},
 	themeConfig: {
 		logo: {
-			src: "/assets/logo.svg",
+			src: "/logo.svg",
 		},
 		search: {
 			provider: "local"

@@ -18,15 +18,15 @@ sstatic is a simple self-hosted URL shortener and a file server. It is a perfect
 ## Screenshots
 
 <picture>
-	<source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/shortener-dark.png">
-	<source media="(prefers-color-scheme: light)" srcset="/assets/screenshots/shortener-light.png">
+	<source media="(prefers-color-scheme: dark)" srcset="/assets/shortener-dark.png">
+	<source media="(prefers-color-scheme: light)" srcset="/assets/shortener-light.png">
 	<img alt="">
 </picture>
 
 <br />
 
 <picture>
-	<source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/files-dark.png">
-	<source media="(prefers-color-scheme: light)" srcset="/assets/screenshots/files-light.png">
+	<source media="(prefers-color-scheme: dark)" srcset="/assets/files-dark.png">
+	<source media="(prefers-color-scheme: light)" srcset="/assets/files-light.png">
 	<img alt="">
 </picture>
