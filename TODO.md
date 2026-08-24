@@ -1,8 +1,11 @@
 - [X] Logo
 - [X] PWA
+- [X] Scalar website
+- [X] CI/CD
 - [ ] Markdown docs
+	- [ ] CONTRIBUTING.md
+	- [ ] README.md
+	- [ ] Issue templates
 - [ ] Docs website
-- [ ] Scalar website
 - [ ] Add more analytics providers
-- [ ] CI/CD
 - [ ] TBD
