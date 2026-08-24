@@ -33,18 +33,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm # or pnpm / yarn
 
       - name: Cache VitePress
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: docs/.vitepress/cache
           key: ${{ runner.os }}-vitepress-${{ hashFiles('docs/**', 'package-lock.json', 'pnpm-lock.yaml', 'yarn.lock', 'bun.lockb') }}
@@ -52,7 +52,7 @@ jobs:
             ${{ runner.os }}-vitepress-
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v6
 
       - name: Install dependencies
         run: npm ci # or pnpm install / yarn install / bun install
@@ -61,7 +61,7 @@ jobs:
         run: npm run docs:build # or pnpm docs:build / yarn docs:build / bun run docs:build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: docs/.vitepress/dist
 
@@ -77,4 +77,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
