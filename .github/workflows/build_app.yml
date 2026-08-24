@@ -1,0 +1,29 @@
+name: "Build admin application"
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "app/**"
+      - ".github/workflows/build_app.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: node:26
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - run: npm install
+        working-directory: app
+
+      - run: npm run build
+        working-directory: app
+
+      - run: npm run lint
+        working-directory: app
+
+      - run: npm audit
+        working-directory: app

@@ -1,0 +1,22 @@
+name: "Build dotnet app"
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "api/**"
+      - ".github/workflows/build_api.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - run: dotnet restore
+        working-directory: api
+
+      - run: dotnet build --configuration Release --no-restore
+        working-directory: api
