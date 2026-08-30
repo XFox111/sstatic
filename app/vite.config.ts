@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
+const PROXY_HOST: string = "http://localhost:5141";
+
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [react()],
@@ -15,32 +17,32 @@ export default defineConfig({
 		{
 			"/auth/":
 			{
-				target: "http://localhost:5141/_/",
+				target: PROXY_HOST + "/_/",
 				changeOrigin: false
 			},
 			"/api/":
 			{
-				target: "http://localhost:5141/_/",
+				target: PROXY_HOST + "/_/",
 				changeOrigin: false
 			},
 			"/scalar/":
 			{
-				target: "http://localhost:5141/_/",
+				target: PROXY_HOST + "/_/",
 				changeOrigin: false
 			},
 			"/static/":
 			{
-				target: "http://localhost:5141",
+				target: PROXY_HOST,
 				changeOrigin: false
 			},
 			"/s/":
 			{
-				target: "http://localhost:5141",
+				target: PROXY_HOST,
 				changeOrigin: false
 			},
 			"/_/":
 			{
-				target: "http://localhost:5141",
+				target: PROXY_HOST,
 				changeOrigin: false
 			},
 		},
