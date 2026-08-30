@@ -1,0 +1,31 @@
+{
+	"editor.rulers": [
+		{
+			"column": 120
+		}
+	],
+	"editor.insertSpaces": false,
+	"files.insertFinalNewline": true,
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": "explicit"
+	},
+	"files.eol": "\n",
+	"files.trimFinalNewlines": true,
+	"files.trimTrailingWhitespace": true,
+	"css.format.braceStyle": "expand",
+	"css.format.maxPreserveNewLines": 3,
+	"css.format.spaceAroundSelectorSeparator": true,
+	"css.format.newlineBetweenSelectors": false,
+	"css.lint.compatibleVendorPrefixes": "warning",
+	"css.lint.duplicateProperties": "warning",
+	"css.lint.float": "warning",
+	"css.lint.unknownVendorSpecificProperties": "warning",
+	"css.lint.zeroUnits": "warning",
+	"html.format.maxPreserveNewLines": 3,
+	"html.format.wrapAttributes": "preserve",
+	"js/ts.format.placeOpenBraceOnNewLineForControlBlocks": true,
+	"js/ts.format.placeOpenBraceOnNewLineForFunctions": true,
+	"js/ts.format.semicolons": "insert",
+	"js/ts.preferences.quoteStyle": "double",
+	"js/ts.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true
+}
