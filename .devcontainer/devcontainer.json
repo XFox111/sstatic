@@ -32,7 +32,8 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": {
 		"frontend": "cd /workspaces/sstatic/sstatic-app && npm install",
-		"backend": "dotnet restore /workspaces/sstatic/sstatic-api/SStatic.slnx"
+		"backend": "dotnet restore /workspaces/sstatic/sstatic-api/SStatic.slnx",
+		"eftool": "dotnet tool install --global dotnet-ef"
 	}
 
 	// Configure tool-specific properties.
