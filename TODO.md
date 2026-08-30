@@ -2,10 +2,13 @@
 - [X] PWA
 - [X] Scalar website
 - [X] CI/CD
-- [ ] Markdown docs
-	- [ ] CONTRIBUTING.md
-	- [ ] README.md
-	- [ ] Issue templates
+- [X] Markdown docs
+	- [X] CONTRIBUTING.md
+	- [X] README.md
+	- [X] Issue templates
+- [ ] Code formatters
+	- [X] dotnet
+	- [ ] npm
 - [ ] Docs website
 - [ ] Add more analytics providers
 - [ ] TBD
