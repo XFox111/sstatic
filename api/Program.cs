@@ -25,9 +25,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.ConfigureHttpJsonOptions(options =>
-{
-	options.SerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.SnakeCaseLower));
-});
+	options.SerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.SnakeCaseLower))
+);
 
 // Get main configuration
 AppConfig appConfig = builder.Configuration.GetSection("App").Get<AppConfig>() ?? new();

@@ -19,7 +19,7 @@ public static class BuilderExtensions
 	public static void AddAuthentication(this WebApplicationBuilder builder, string appPrefix)
 	{
 		AuthConfig authConfig = builder.Configuration.GetSection("Auth").Get<AuthConfig>()
-			??  throw new ArgumentException("Authentication configuration is missing.");
+			?? throw new ArgumentException("Authentication configuration is missing.");
 
 		builder.Services.AddSingleton(authConfig);
 

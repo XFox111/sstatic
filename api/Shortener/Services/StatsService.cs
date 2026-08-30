@@ -76,7 +76,7 @@ public class StatsService(
 			Language: request.Headers.AcceptLanguage.FirstOrDefault()?.Split(',').FirstOrDefault(),
 			Referer: referer,
 			UtmData: utmData,
-			Tags: [..tags]
+			Tags: [.. tags]
 		);
 
 		foreach (IAnalyticsProvider provider in analyticsProviders)
