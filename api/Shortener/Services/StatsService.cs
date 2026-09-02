@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
+using SStatic.Analytics;
 using SStatic.Analytics.Services;
 
 namespace SStatic.Shortener.Services;
@@ -60,9 +61,6 @@ public class StatsService(
 			tags.AddRange(link.Tags.Select(i => i.Name));
 		}
 
-		if (isDeadLink)
-			tags.Add("dead_link");
-
 		Dictionary<string, string> utmData = [];
 
 		foreach (KeyValuePair<string, StringValues> item in request.Query.Where(i => i.Key.StartsWith("utm_")))
@@ -71,6 +69,7 @@ public class StatsService(
 		VisitReport report = new(
 			Timestamp: DateTime.UtcNow,
 			VisitedUrl: $"{scheme}://{request.Host}{request.Path}",
+			IsDeadLink: isDeadLink,
 			IpAddress: ipAddress,
 			UserAgent: request.Headers.UserAgent.ToString(),
 			Language: request.Headers.AcceptLanguage.FirstOrDefault()?.Split(',').FirstOrDefault(),

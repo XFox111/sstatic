@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using SStatic.Shortener.Configuration;
 
 namespace SStatic.Shortener.Services;
 
@@ -9,7 +10,7 @@ namespace SStatic.Shortener.Services;
 public class ShortenerService(
 	IServiceProvider serviceProvider,
 	ILogger<ShortenerService> logger,
-	AppConfig appConfig
+	ShortenerConfig config
 )
 {
 	/// <summary>
@@ -106,7 +107,7 @@ public class ShortenerService(
 
 	private IFileInfo GetLinkFileInfo(string slug) =>
 		_fileProvider.GetFileInfo(
-			appConfig.CaseInsensitiveSlugs
+			config.CaseInsensitiveSlugs
 				? $"{slug.ToLowerInvariant()}.link"
 				: $"{slug}.link"
 		);

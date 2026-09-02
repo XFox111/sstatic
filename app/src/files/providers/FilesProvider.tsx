@@ -20,7 +20,7 @@ export default function FilesProvider({ children }: React.PropsWithChildren): Re
 {
 	const dialog = useDialog();
 	const toaster = useToastController();
-	const { filesBaseUrl, shortenerBaseUrl, maxFileSize } = useRuntimeInfo();
+	const { filesBaseUrl, shortenerBaseUrl, files: filesConfig } = useRuntimeInfo();
 	const [error, setError] = useState<string | null>(null);
 	const [rootFolder, setRootFolder] = useState<DirectoryDetails>(null!);
 	const [currentFolder, setCurrentFolder] = useState<DirectoryDetails>(null!);
@@ -76,6 +76,7 @@ export default function FilesProvider({ children }: React.PropsWithChildren): Re
 		for (const file of fileList)
 		{
 			console.log(file);
+			const maxFileSize: number = filesConfig.maxFileSize;
 
 			if (maxFileSize > 0 && file.size > maxFileSize)
 				toaster.dispatchToast(

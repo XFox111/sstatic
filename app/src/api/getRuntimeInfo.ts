@@ -6,16 +6,26 @@ export const getRuntimeInfo = (): Promise<ApiResponse<GetRuntimeInfoResponse>> =
 
 export type GetRuntimeInfoResponse =
 	{
+		host: string;
+		prefix: string;
 		enableOpenApi: boolean;
-		isAuthenticated: boolean;
-		shortenerHost: string;
-		shortenerPrefix: string;
-		filesHost: string;
-		filesPrefix: string;
-		appHost: string;
-		appPrefix: string;
 		usePasswordAuth: boolean;
-		maxFileSize: number;
-		caseInsensitiveSlugs: boolean;
-		defaultSlugLength: number;
+		isAuthenticated: boolean;
+		shortener: ShortenerConfig;
+		files: FilesConfig;
 	};
+
+export type ShortenerConfig =
+{
+	host: string;
+	prefix: string;
+	caseInsensitiveSlugs: boolean;
+	defaultSlugLength: number;
+};
+
+export type FilesConfig =
+{
+	host: string;
+	prefix: string;
+	maxFileSize: number;
+}

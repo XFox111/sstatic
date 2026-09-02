@@ -12,16 +12,20 @@
 	},
 	"App": {
 		"DataRoot": "/data",
-		"AppHost": "*",
-		"AppPrefix": "/",
-		"ShortenerHost": "*",
-		"ShortenerPrefix": "/",
-		"FilesHost": "*",
-		"FilesPrefix": "/",
-		"MaxFileUploadSize": 0,
 		"EnableOpenApi": null,
-		"CaseInsensitiveSlugs": false,
-		"DefaultSlugLength": 8
+		"Host": "*",
+		"Prefix": "/",
+		"Shortener": {
+			"Host": "*",
+			"Prefix": "/",
+			"CaseInsensitiveSlugs": false,
+			"DefaultSlugLength": 8
+		},
+		"Files": {
+			"Host": "*",
+			"Prefix": "/",
+			"MaxFileUploadSize": 0
+		}
 	},
 	"Auth": {
 		"Oidc": {

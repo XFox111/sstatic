@@ -12,12 +12,9 @@ public static class BuilderExtensions
 	/// <summary>
 	/// Add and configure analytics services that URL visits can be reported to.
 	/// </summary>
-	public static IServiceCollection AddAnalytics(this IServiceCollection services, ConfigurationManager configuration)
+	public static IServiceCollection AddAnalytics(this IServiceCollection services, IConfigurationSection configuration)
 	{
-		AnalyticsConfig? analyticsConfig = configuration.GetSection("Analytics").Get<AnalyticsConfig>();
-
-		if (analyticsConfig is not null)
-			services.AddScoped<GeoIpService>();
+		AnalyticsConfig? analyticsConfig = configuration.Get<AnalyticsConfig>();
 
 		if (analyticsConfig?.Plausible is not null)
 			services

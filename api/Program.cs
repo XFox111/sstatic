@@ -30,8 +30,6 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 // Get main configuration
 AppConfig appConfig = builder.Configuration.GetSection("App").Get<AppConfig>() ?? new();
-Directory.CreateDirectory(appConfig.FilesRoot);
-Directory.CreateDirectory(appConfig.LinksRoot);
 appConfig.EnableOpenApi ??= builder.Environment.IsDevelopment();
 builder.Services.AddSingleton(appConfig);
 
@@ -58,13 +56,13 @@ if (appConfig.EnableOpenApi is true)
 
 // Configure key services
 builder.Services
-	.AddShortenerServices()
-	.AddStaticFilesServices()
-	.AddAnalytics(builder.Configuration);
+	.AddShortenerServices(appConfig.DataRoot, builder.Configuration.GetSection("App:Shortener"))
+	.AddStaticFilesServices(appConfig.DataRoot, builder.Configuration.GetSection("App:Files"))
+	.AddAnalytics(builder.Configuration.GetSection("Analytics"));
 
 // Configure authentication
 builder.Services.AddAuthorization();
-builder.AddAuthentication(appConfig.AppPrefix);
+builder.AddAuthentication(appConfig.Prefix);
 
 builder.Services.AddCors(options =>
 	options.AddDefaultPolicy(policy =>
@@ -94,38 +92,32 @@ app.UseWhen(context => context.GetEndpoint()?.RequestDelegate is not null, appBu
 	appBuilder.UseAuthorization();
 });
 
-app.UseWithHost(appConfig.AppHost, appBuilder =>
-	appBuilder.UseSpaStaticFiles(appConfig.AppPrefix)
+app.UseWithHost(appConfig.Host, appBuilder =>
+	appBuilder.UseSpaStaticFiles(appConfig.Prefix)
 );
 
-app.UseWithHost(appConfig.FilesHost, appBuilder =>
-	appBuilder.UseSharedStaticFiles(appConfig.FilesPrefix)
+app.UseSharedStaticFiles();
+app.UseShortener();
+
+app.UseWithHost(appConfig.Host, appBuilder =>
+	appBuilder.UseSpaIndexFallback(appConfig.Prefix)
 );
 
-app.UseWithHost(appConfig.ShortenerHost, appBuilder =>
-	appBuilder.UseShortener(appConfig.ShortenerPrefix)
-);
-
-app.UseWithHost(appConfig.AppHost, appBuilder =>
-	appBuilder.UseSpaIndexFallback(appConfig.AppPrefix)
-);
-
-app.MapAppEndpoints(appConfig.AppPrefix, mapOpenApi: appConfig.EnableOpenApi.Value)
-	.RequireHost(appConfig.AppHost);
+app.MapAppEndpoints(appConfig.Prefix, mapOpenApi: appConfig.EnableOpenApi.Value)
+	.RequireHost(appConfig.Host);
 
 app.MapGet("/robots.txt", (IWebHostEnvironment env) =>
 {
 	IFileInfo robotsFile = env.WebRootFileProvider.GetFileInfo("robots.txt");
 
-	if (robotsFile.Exists)
-		return Results.File(robotsFile.PhysicalPath!, "text/plain");
-
-	return Results.NotFound();
+	return robotsFile.Exists
+		? Results.File(robotsFile.PhysicalPath!, "text/plain")
+		: Results.NotFound();
 })
 	.ShortCircuit()
 	.ExcludeFromDescription();
 
-app.RunLinksCleanup();
+app.ScheduleLinksCleanup();
 
 app.Run();
 

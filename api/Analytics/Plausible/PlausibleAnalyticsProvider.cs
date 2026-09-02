@@ -31,6 +31,9 @@ public class PlausibleAnalyticsProvider(PlausibleConfig config) : IAnalyticsProv
 		foreach (string tag in report.Tags)
 			props.Add(tag, true);
 
+		if (report.IsDeadLink)
+			props.Add("dead_link", true);
+
 		PlausibleReport plausibleReport = new(
 			Url: url,
 			Domain: config.DomainName,

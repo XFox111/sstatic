@@ -29,8 +29,8 @@ export default function RuntimeInfoProvider({ children }: RuntimeInfoProviderPro
 	return (
 		<RuntimeInfoContext.Provider value={{
 			...runtimeInfo,
-			filesBaseUrl: getUrl(runtimeInfo.filesHost, runtimeInfo.filesPrefix),
-			shortenerBaseUrl: getUrl(runtimeInfo.shortenerHost, runtimeInfo.shortenerPrefix)
+			filesBaseUrl: getUrl(runtimeInfo.files.host, runtimeInfo.files.prefix),
+			shortenerBaseUrl: getUrl(runtimeInfo.shortener.host, runtimeInfo.shortener.prefix)
 		}}>
 			{typeof children === "function"
 				? children(runtimeInfo)

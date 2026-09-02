@@ -1,25 +1,25 @@
 using SStatic.Auth.Configuration;
 using SStatic.OpenApi;
+using SStatic.Shortener.Configuration;
+using SStatic.StaticFiles.Configuration;
 
 namespace SStatic.Endpoints;
 
 public static partial class ApiEndpoints
 {
 	private static RouteHandlerBuilder MapGetRuntimeInfo(this IEndpointRouteBuilder builder) =>
-		builder.MapGet("/info", (AppConfig appConfig, HttpContext context, AuthConfig authConfig) =>
+		builder.MapGet("/info", (
+			AppConfig appConfig, HttpContext context, AuthConfig authConfig,
+			ShortenerConfig shortenerConfig, FilesConfig filesConfig
+		) =>
 			Results.Ok(new GetRuntimeInfoResponse(
 				EnableOpenApi: appConfig.EnableOpenApi ?? false,
 				IsAuthenticated: context.User.Identity?.IsAuthenticated == true,
-				ShortenerHost: appConfig.ShortenerHost,
-				ShortenerPrefix: appConfig.ShortenerPrefix.Trim('/'),
-				FilesHost: appConfig.FilesHost,
-				FilesPrefix: appConfig.FilesPrefix.Trim('/'),
-				AppHost: appConfig.AppHost,
-				AppPrefix: appConfig.AppPrefix.Trim('/'),
 				UsePasswordAuth: authConfig.Oidc is null,
-				MaxFileSize: appConfig.MaxFileUploadSize,
-				CaseInsensitiveSlugs: appConfig.CaseInsensitiveSlugs,
-				DefaultSlugLength: appConfig.DefaultSlugLength
+				Host: appConfig.Host,
+				Prefix: appConfig.Prefix,
+				Shortener: shortenerConfig,
+				Files: filesConfig
 			))
 		)
 			.AllowAnonymous()

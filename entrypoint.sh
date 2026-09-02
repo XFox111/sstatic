@@ -20,37 +20,37 @@ if [ -n "$SSTATIC_DATA" ]; then
 fi
 
 if [ -n "$SSTATIC_APP_HOST" ]; then
-	export App__AppHost="$SSTATIC_APP_HOST"
+	export App__Host="$SSTATIC_APP_HOST"
 	echo "SSTATIC_APP_HOST=$SSTATIC_APP_HOST"
 fi
 
 if [ -n "$SSTATIC_APP_PREFIX" ]; then
-	export App__AppPrefix="$SSTATIC_APP_PREFIX"
+	export App__Prefix="$SSTATIC_APP_PREFIX"
 	echo "SSTATIC_APP_PREFIX=$SSTATIC_APP_PREFIX"
 fi
 
 if [ -n "$SSTATIC_SHORTENER_HOST" ]; then
-	export App__ShortenerHost="$SSTATIC_SHORTENER_HOST"
+	export App__Shortener__Host="$SSTATIC_SHORTENER_HOST"
 	echo "SSTATIC_SHORTENER_HOST=$SSTATIC_SHORTENER_HOST"
 fi
 
 if [ -n "$SSTATIC_SHORTENER_PREFIX" ]; then
-	export App__ShortenerPrefix="$SSTATIC_SHORTENER_PREFIX"
+	export App__Shortener__Prefix="$SSTATIC_SHORTENER_PREFIX"
 	echo "SSTATIC_SHORTENER_PREFIX=$SSTATIC_SHORTENER_PREFIX"
 fi
 
 if [ -n "$SSTATIC_FILES_HOST" ]; then
-	export App__FilesHost="$SSTATIC_FILES_HOST"
+	export App__Files__Host="$SSTATIC_FILES_HOST"
 	echo "SSTATIC_FILES_HOST=$SSTATIC_FILES_HOST"
 fi
 
 if [ -n "$SSTATIC_FILES_PREFIX" ]; then
-	export App__FilesPrefix="$SSTATIC_FILES_PREFIX"
+	export App__Files__Prefix="$SSTATIC_FILES_PREFIX"
 	echo "SSTATIC_FILES_PREFIX=$SSTATIC_FILES_PREFIX"
 fi
 
 if [ -n "$SSTATIC_MAX_FILE_UPLOAD_SIZE" ]; then
-	export App__MaxFileUploadSize="$SSTATIC_MAX_FILE_UPLOAD_SIZE"
+	export App__Files__MaxFileUploadSize="$SSTATIC_MAX_FILE_UPLOAD_SIZE"
 	echo "SSTATIC_MAX_FILE_UPLOAD_SIZE=$SSTATIC_MAX_FILE_UPLOAD_SIZE"
 fi
 
@@ -60,12 +60,12 @@ if [ -n "$SSTATIC_ENABLE_OPENAPI" ]; then
 fi
 
 if [ -n "$SSTATIC_CASE_INSENSITIVE_SLUGS" ]; then
-	export App__CaseInsensitiveSlugs="$SSTATIC_CASE_INSENSITIVE_SLUGS"
+	export App__Shortener__CaseInsensitiveSlugs="$SSTATIC_CASE_INSENSITIVE_SLUGS"
 	echo "SSTATIC_CASE_INSENSITIVE_SLUGS=$SSTATIC_CASE_INSENSITIVE_SLUGS"
 fi
 
 if [ -n "$SSTATIC_DEFAULT_SLUG_LENGTH" ]; then
-	export App__DefaultSlugLength="$SSTATIC_DEFAULT_SLUG_LENGTH"
+	export App__Shortener__DefaultSlugLength="$SSTATIC_DEFAULT_SLUG_LENGTH"
 	echo "SSTATIC_DEFAULT_SLUG_LENGTH=$SSTATIC_DEFAULT_SLUG_LENGTH"
 fi
 

@@ -9,7 +9,7 @@ import TagInput from "../components/TagInput";
 
 export default function EditLinkDialog(props: DialogProps<EditLinkDialogProps, ShortLink | null>): React.ReactElement
 {
-	const { caseInsensitiveSlugs, shortenerBaseUrl } = useRuntimeInfo();
+	const { shortenerBaseUrl, shortener: shortenerConfig } = useRuntimeInfo();
 	const [generatedSlug, setGeneratedSlug] = useState<string>(randomSlug());
 	const [slug, setSlug] = useState<string>(props.link?.slug ?? props.suggestedSlug ?? "");
 	const [redirectUrl, setRedirectUrl] = useState<string>(props.link?.redirectUrl ?? props.suggestedUrl ?? "");
@@ -71,7 +71,7 @@ export default function EditLinkDialog(props: DialogProps<EditLinkDialogProps, S
 							onChange={(_, data) => setEnabled(data.checked)} />
 
 						<Field label="Slug"
-							hint={caseInsensitiveSlugs ? undefined : "Slugs are case-sensitive."}
+							hint={shortenerConfig.caseInsensitiveSlugs ? undefined : "Slugs are case-sensitive."}
 							validationMessage={!validSlug
 								? "Slug can only contain letters, numbers, hyphens, underscores, and periods." : undefined
 							}
