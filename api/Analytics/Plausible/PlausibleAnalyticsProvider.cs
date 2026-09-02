@@ -8,44 +8,56 @@ namespace SStatic.Analytics.Plausible;
 /// <summary>
 /// Event reporting service for Plausible.io service
 /// </summary>
-public class PlausibleAnalyticsProvider(PlausibleConfig config) : IAnalyticsProvider
+public class PlausibleAnalyticsProvider(
+	PlausibleConfig config,
+	ILogger<PlausibleAnalyticsProvider> logger
+) : IAnalyticsProvider
 {
 	/// <inheritdoc />
 	public async Task SendReportAsync(VisitReport report, CancellationToken? token)
 	{
-		using HttpRequestMessage request = new(HttpMethod.Post, config.Endpoint);
-		request.Headers.UserAgent.Clear();
-		request.Headers.Add("User-Agent", report.UserAgent);
-		request.Headers.Add("X-Forwarded-For", report.IpAddress);
+		try
+		{
+			logger.LogDebug("Logging {url} visit to Plausible endpoint ({endpoint})", report.VisitedUrl, config.Endpoint);
 
-		Dictionary<string, object> props = [];
+			using HttpRequestMessage request = new(HttpMethod.Post, config.Endpoint);
+			request.Headers.UserAgent.Clear();
+			request.Headers.Add("User-Agent", report.UserAgent);
+			request.Headers.Add("X-Forwarded-For", report.IpAddress);
 
-		string url = report.VisitedUrl;
+			Dictionary<string, object> props = [];
 
-		if (report.UtmData.Count > 0)
-			url = QueryHelpers.AddQueryString(url, report.UtmData!);
+			string url = report.VisitedUrl;
 
-		if (report.Language is not null)
-			props.Add("browser_language", report.Language);
+			if (report.UtmData.Count > 0)
+				url = QueryHelpers.AddQueryString(url, report.UtmData!);
 
-		foreach (string tag in report.Tags)
-			props.Add(tag, true);
+			if (report.Language is not null)
+				props.Add("browser_language", report.Language);
 
-		if (report.IsDeadLink)
-			props.Add("dead_link", true);
+			foreach (string tag in report.Tags)
+				props.Add(tag, true);
 
-		PlausibleReport plausibleReport = new(
-			Url: url,
-			Domain: config.DomainName,
-			Referer: report.Referer,
-			Props: props
-		);
+			if (report.IsDeadLink)
+				props.Add("dead_link", true);
 
-		request.Content = JsonContent.Create(plausibleReport, new MediaTypeHeaderValue("application/json"));
+			PlausibleReport plausibleReport = new(
+				Url: url,
+				Domain: config.DomainName,
+				Referer: report.Referer,
+				Props: props
+			);
 
-		using HttpClient httpClient = new();
-		HttpResponseMessage response = await httpClient.SendAsync(request);
-		response.EnsureSuccessStatusCode();
+			request.Content = JsonContent.Create(plausibleReport, new MediaTypeHeaderValue("application/json"));
+
+			using HttpClient httpClient = new();
+			HttpResponseMessage response = await httpClient.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+		}
+		catch (Exception ex)
+		{
+			logger.LogError(exception: ex, message: "Failed to send Plausible event.");
+		}
 	}
 }
 

@@ -38,7 +38,7 @@ public class StatsService(
 		else
 			logger.LogWarning("User successfully visited link \"{slug}\", but it was not found in the database. System restart is recommended.", slug);
 
-		if (analyticsProviders.Any())
+		if (!analyticsProviders.Any())
 			return;
 
 		string scheme = request.UsesHttps() ? "https" : "http";
