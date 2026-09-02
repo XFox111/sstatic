@@ -9,5 +9,8 @@
 		"markdown-it-footnote": "^4.0.0",
 		"vitepress": "^1.6.4",
 		"vitepress-plugin-group-icons": "^1.7.6"
+	},
+	"allowScripts": {
+		"esbuild@0.21.5": true
 	}
 }
