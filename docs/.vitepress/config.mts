@@ -49,7 +49,7 @@ export default defineConfig({
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
 			{ text: "Home", link: "/" },
-			{ text: "Docs", link: "/get-started/about" },
+			{ text: "Docs", link: "/get-started/" },
 			{ text: "API reference", link: "/scalar.html", target: "_blank" }
 		],
 
@@ -57,7 +57,7 @@ export default defineConfig({
 			{
 				text: "Getting started",
 				items: [
-					{ text: "About sstatic", link: "/get-started/about" },
+					{ text: "About sstatic", link: "/get-started/" },
 					{ text: "Installation", link: "/get-started/installation" },
 					{ text: "Reverse proxy", link: "/get-started/reverse-proxy" }
 				]
@@ -77,6 +77,14 @@ export default defineConfig({
 					{ text: "Multiple domains", link: "/guides/multiple-domains" },
 					{ text: "Analytics", link: "/guides/analytics" },
 					{ text: "REST API", link: "/guides/rest-api" },
+					{ text: "Healthcheck", link: "/guides/healthcheck" },
+				]
+			},
+			{
+				text: "Reference",
+				items: [
+					{ text: "Route resoltuion", link: "/reference/routes" },
+					{ text: "robots.txt", link: "/reference/robots" },
 				]
 			}
 		],

@@ -141,3 +141,10 @@
 {
 	--docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
+
+.badges
+{
+	display: flex;
+	gap: 6px;
+	flex-wrap: wrap;
+}
