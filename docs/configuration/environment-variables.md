@@ -8,7 +8,7 @@
 | ---- | ----------- | ------------- |
 | `SSTATIC_DATA` | The path to the data directory. | `/data` |
 | `SSTATIC_APP_HOST` | The host on which the admin application will run. May be a glob pattern (e.g. `*.example.com`) | `*` |
-| `SSTATIC_PREFIX` | The prefix for the admin application's routes. | `/` |
+| `SSTATIC_APP_PREFIX` | The prefix for the admin application's routes. | `/` |
 | `SSTATIC_ENABLE_OPENAPI` | Whether to enable the OpenAPI endpoints. | `null`[^1] |
 
 [^1]: By default, OpenAPI endpoints will be disabled, unless `ASPNETCORE_ENVIRONMENT` variable is set to `Development` or `Staging`.

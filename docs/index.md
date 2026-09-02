@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get started
-      link: /installation
+      link: /get-started/installation
     - theme: alt
       text: Source code
       link: https://github.com/xfox111/sstatic
