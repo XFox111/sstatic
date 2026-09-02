@@ -10,7 +10,7 @@ import TagInput from "../components/TagInput";
 export default function EditLinkDialog(props: DialogProps<EditLinkDialogProps, ShortLink | null>): React.ReactElement
 {
 	const { shortenerBaseUrl, shortener: shortenerConfig } = useRuntimeInfo();
-	const [generatedSlug, setGeneratedSlug] = useState<string>(randomSlug());
+	const [generatedSlug, setGeneratedSlug] = useState<string>(randomSlug(shortenerConfig.defaultSlugLength));
 	const [slug, setSlug] = useState<string>(props.link?.slug ?? props.suggestedSlug ?? "");
 	const [redirectUrl, setRedirectUrl] = useState<string>(props.link?.redirectUrl ?? props.suggestedUrl ?? "");
 	const [forwardQuery, setForwardQuery] = useState<boolean>(props.link?.forwardQuery ?? false);
@@ -90,7 +90,7 @@ export default function EditLinkDialog(props: DialogProps<EditLinkDialogProps, S
 											size="small"
 											icon={<RandomizeIcon />}
 											disabled={busy}
-											onClick={() => setGeneratedSlug(randomSlug())}
+											onClick={() => setGeneratedSlug(randomSlug(shortenerConfig.defaultSlugLength))}
 										/>
 									</Tooltip>
 								} />
@@ -159,10 +159,10 @@ export default function EditLinkDialog(props: DialogProps<EditLinkDialogProps, S
 	);
 }
 
-function randomSlug(): string
+function randomSlug(length: number): string
 {
 	const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	const bytes = new Uint8Array(8);
+	const bytes = new Uint8Array(length);
 	crypto.getRandomValues(bytes);
 
 	return Array.from(bytes, byte => alphabet[byte % alphabet.length]).join("");
