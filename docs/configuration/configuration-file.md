@@ -2,6 +2,8 @@
 
 <!--@include: @/parts/wip.md-->
 
+::: code-group
+
 ```json [appsettings.json]
 {
 	"Logging": {
@@ -47,3 +49,42 @@
 	}
 }
 ```
+
+```ini [config.ini]
+[Logging:LogLevel]
+Default = Information
+Microsoft.AspNetCore = Warning
+
+[App]
+DataRoot = /data
+Host = *
+Prefix = /
+EnableOpenApi =
+
+[App:Shortener]
+Host = *
+Prefix = /
+CaseInsensitiveSlugs = false
+DefaultSlugLength = 8
+
+[App:Files]
+Host = *
+Prefix = /
+MaxFileUploadSize = 0
+
+[Auth:Oidc]
+Configuration =
+ClientId =
+ClientSecret =
+
+[Auth:Password]
+Username =
+Password =
+PasswordHash =
+
+[Analytics:Plausible]
+Endpoint = https://plausible.io/api/event
+DomainName =
+```
+
+:::

@@ -22,6 +22,8 @@ if (args.FirstOrDefault()?.Equals("hash-password") ?? false)
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddIniFile("config.ini", optional: true, reloadOnChange: false);
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.ConfigureHttpJsonOptions(options =>
