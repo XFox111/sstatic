@@ -45,6 +45,12 @@
 		"Plausible": {
 			"DomainName": "",
 			"Endpoint": "https://plausible.io/api/event"
+		},
+		"Webhook": {
+			"Endpoint": "",
+			"Method": "GET",
+			"Headers": {},
+			"BodyTemplateFile": ""
 		}
 	}
 }
@@ -85,6 +91,15 @@ PasswordHash =
 [Analytics:Plausible]
 Endpoint = https://plausible.io/api/event
 DomainName =
+
+[Analytics:Webhook]
+Endpoint =
+Method = GET
+BodyTemplateFile =
+
+[Analytics:Webhook:Headers]
+; X-Test = true
+; X-URL = "{{url}}"
 ```
 
 :::

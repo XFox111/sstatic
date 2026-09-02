@@ -56,3 +56,12 @@
 | ---- | ----------- | ------------- |
 | `PLAUSIBLE_DOMAIN_NAME` | The domain name for Plausible. | |
 | `PLAUSIBLE_ENDPOINT` | The endpoint for Plausible. | `https://plausible.io/api/event` |
+
+### Webhook
+
+| Name | Description | Default value |
+| ---- | ----------- | ------------- |
+| `WEBHOOK_ENDPOINT` | Endpoint URL for webhook request. | |
+| `WEBHOOK_METHOD` | HTTP method for webhook request. | `GET` |
+| `WEBHOOK_BODY_TEMPLATE_FILE` | The path to request body template file. | |
+| `Analytics__Webhook__Headers__*` | HTTP headers for webhook request (e.g. `Analytics__Webhook__Headers__Authorization=Bearer ...`). | |

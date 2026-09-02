@@ -1,6 +1,8 @@
 using SStatic.Analytics.Configuration;
 using SStatic.Analytics.Plausible;
 using SStatic.Analytics.Services;
+using SStatic.Analytics.Webhook;
+using UAParser;
 
 namespace SStatic.Analytics;
 
@@ -20,6 +22,13 @@ public static class BuilderExtensions
 			services
 				.AddSingleton(analyticsConfig.Plausible)
 				.AddScoped<IAnalyticsProvider, PlausibleAnalyticsProvider>();
+
+		if (analyticsConfig?.Webhook is not null)
+			services
+				.AddSingleton(analyticsConfig.Webhook)
+				.AddScoped<GeoIpService>()
+				.AddSingleton(_ => Parser.GetDefault())
+				.AddScoped<IAnalyticsProvider, WebhookAnalyticsProvider>();
 
 		return services;
 	}

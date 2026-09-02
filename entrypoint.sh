@@ -109,6 +109,21 @@ if [ -n "$PLAUSIBLE_ENDPOINT" ]; then
 	echo "PLAUSIBLE_ENDPOINT=$PLAUSIBLE_ENDPOINT"
 fi
 
+if [ -n "$WEBHOOK_ENDPOINT" ]; then
+	export Analytics__Webhoook__Endpoint="$WEBHOOK_ENDPOINT"
+	echo "WEBHOOK_ENDPOINT=$WEBHOOK_ENDPOINT"
+fi
+
+if [ -n "$WEBHOOK_METHOD" ]; then
+	export Analytics__Webhoook__Method="$WEBHOOK_METHOD"
+	echo "WEBHOOK_METHOD=$WEBHOOK_METHOD"
+fi
+
+if [ -n "$WEBHOOK_BODY_TEMPLATE_FILE" ]; then
+	export Analytics__Webhoook__BodyTemplateFile="$WEBHOOK_BODY_TEMPLATE_FILE"
+	echo "WEBHOOK_BODY_TEMPLATE_FILE=$WEBHOOK_BODY_TEMPLATE_FILE"
+fi
+
 echo "Ensuring data directories exist..."
 mkdir -p "$App__DataRoot/{files,links}"
 
