@@ -101,7 +101,7 @@
 
 	--vp-home-hero-image-background-image: linear-gradient(-45deg,
 			#bd5431 50%,
-			#316eaa 50%);
+			#479ef5 50%);
 	--vp-home-hero-image-filter: blur(44px);
 }
 
@@ -147,4 +147,16 @@
 	display: flex;
 	gap: 6px;
 	flex-wrap: wrap;
+}
+
+/* Hide dark-mode images by default in light mode */
+html:not(.dark) .dark-only
+{
+	display: none;
+}
+
+/* Hide light-mode images when dark mode is active */
+html.dark .light-only
+{
+	display: none;
 }

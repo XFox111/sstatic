@@ -7,7 +7,8 @@ hero:
   text: "A simple self-hosted URL shortener and a file server"
   tagline: "A perfect companion for your personal website"
   image:
-    src: /logo.svg
+    light: "/logo.svg#light"
+    dark: "/logo.svg#dark"
   actions:
     - theme: brand
       text: Get started

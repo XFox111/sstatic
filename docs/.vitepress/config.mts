@@ -38,7 +38,8 @@ export default defineConfig({
 	},
 	themeConfig: {
 		logo: {
-			src: "/logo.svg",
+			dark: "/logo.svg#dark",
+			light: "/logo.svg#light"
 		},
 		search: {
 			provider: "local"

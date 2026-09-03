@@ -6,9 +6,11 @@ import ApiDocsButton from "./ApiDocsButton";
 import DrawerMenu from "./DrawerMenu";
 import NavigationMenu from "./NavigationMenu";
 import UserCard from "./UserCard";
+import useTheme from "../hooks/useTheme";
 
 export default function Header(): React.ReactElement
 {
+	const { isDark } = useTheme();
 	const { enableOpenApi } = useRuntimeInfo();
 	const hideNavigation = useMediaQuery("(max-width: 800px)");
 	const simplifyNavigation = useMediaQuery("(max-width: 1024px)");
@@ -21,7 +23,7 @@ export default function Header(): React.ReactElement
 					{hideNavigation &&
 						<DrawerMenu className={mergeClasses(cls.drawerButton, cls.noDragArea)} />
 					}
-					<img src="./logo.svg" alt="" className={cls.logo} draggable={false} />
+					<img src={ "./logo.svg" + (isDark ? "#dark" : "#light") } alt="" className={cls.logo} draggable={false} />
 					<Title1 as="h1" className={cls.title}>sstatic</Title1>
 				</div>
 

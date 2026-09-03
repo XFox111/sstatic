@@ -31,6 +31,16 @@ export default function ThemeProvider({ children, ...props }: Omit<FluentProvide
 		return () => media.removeEventListener("change", updateTheme);
 	}, [options]);
 
+	useEffect(() =>
+	{
+		const color: string = themeKey === "dark" ? "#292929"
+			: themeKey === "oled" ? "#000000" : "#ffffff";
+
+		document.head
+			.querySelector("meta[name=theme-color]")
+			?.setAttribute("content", color);
+	}, [themeKey]);
+
 	return (
 		<ThemeContext.Provider
 			value={{

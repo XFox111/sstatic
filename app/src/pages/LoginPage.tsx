@@ -10,9 +10,11 @@ import useDialog from "../hooks/useDialog";
 import useRuntimeInfo from "../hooks/useRuntimeInfo";
 import { useStyles_LoginPage } from "./LoginPage.styles";
 import DialogRenderer from "../components/DialogRenderer";
+import useTheme from "../hooks/useTheme";
 
 export default function LoginPage(): React.ReactElement
 {
+	const { isDark } = useTheme();
 	const { enableOpenApi, usePasswordAuth } = useRuntimeInfo();
 	const dialog = useDialog();
 	const cls = useStyles_LoginPage();
@@ -43,15 +45,14 @@ export default function LoginPage(): React.ReactElement
 			</header>
 
 			<article className={cls.content}>
-				<img src="./logo.svg" alt="" className={cls.logo} />
+				<img src={"./logo.svg" + (isDark ? "#dark" : "#light")} alt="" className={cls.logo} />
 				<LargeTitle align="center">Welcome to sstatic!</LargeTitle>
 				<Subtitle1 align="center">
 					sstatic is a simple self-hosted application for serving static files with built-in URL shortener.
 				</Subtitle1>
 
 				<div>
-					{/* {link("Website", "https://sstatic.xfox111.net")} {" | "}
-					{link("Documentation", "https://sstatic.xfox111.net/docs")} {" | "} */}
+					{link("Documentation", "https://sstatic.xfox111.net/")} {" | "}
 					{link("GitHub", "https://github.com/XFox111/sstatic")} {" | "}
 					{link("Buy Me a Coffee", "https://buymeacoffee.com/xfox111")}
 				</div>
