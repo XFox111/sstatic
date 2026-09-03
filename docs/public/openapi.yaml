@@ -1216,66 +1216,55 @@ components:
         createdAt: '2023-01-01T00:00:00Z'
         updatedAt: '2023-01-01T00:00:00Z'
         type: file
-    GetRuntimeInfoResponse:
-      required:
-        - enableOpenApi
-        - isAuthenticated
-        - shortenerHost
-        - shortenerPrefix
-        - caseInsensitiveSlugs
-        - defaultSlugLength
-        - filesHost
-        - filesPrefix
-        - appHost
-        - appPrefix
-        - usePasswordAuth
-        - maxFileSize
+    FilesConfig:
       type: object
       properties:
-        enableOpenApi:
-          type: boolean
-          description: Indicates whether OpenAPI is enabled.
-        isAuthenticated:
-          type: boolean
-          description: Indicates whether the user is authenticated.
-        shortenerHost:
+        host:
           type: string
-          description: The host of the shortener service.
-        shortenerPrefix:
+          description: The host for the static files endpoints.
+        prefix:
           type: string
-          description: The prefix of the shortener service.
-        caseInsensitiveSlugs:
-          type: boolean
-          description: Indicates whether short URL slugs are case-insensitive.
-        defaultSlugLength:
-          pattern: '^-?(?:0|[1-9]\d*)$'
-          type:
-            - integer
-            - string
-          description: Default number of characters for a randomized short URL slug.
-          format: int32
-        filesHost:
-          type: string
-          description: The host of the files service.
-        filesPrefix:
-          type: string
-          description: The prefix of the files service.
-        appHost:
-          type: string
-          description: The host of the main application.
-        appPrefix:
-          type: string
-          description: The prefix of the main application.
-        usePasswordAuth:
-          type: boolean
-          description: Indicates whther the app uses password authentication.
-        maxFileSize:
+          description: The prefix for the static files endpoints.
+        maxFileUploadSize:
           pattern: '^-?(?:0|[1-9]\d*)$'
           type:
             - integer
             - string
           description: Maximum file size for uploading in bytes.
           format: int32
+      description: Static files component configuration.
+    GetRuntimeInfoResponse:
+      required:
+        - host
+        - prefix
+        - enableOpenApi
+        - usePasswordAuth
+        - isAuthenticated
+        - shortener
+        - files
+      type: object
+      properties:
+        host:
+          type: string
+          description: The host of the main application.
+        prefix:
+          type: string
+          description: The prefix of the main application.
+        enableOpenApi:
+          type: boolean
+          description: Indicates whether OpenAPI is enabled.
+        usePasswordAuth:
+          type: boolean
+          description: Indicates whther the app uses password authentication.
+        isAuthenticated:
+          type: boolean
+          description: Indicates whether the user is authenticated.
+        shortener:
+          description: Shortener component configuration.
+          $ref: '#/components/schemas/ShortenerConfig'
+        files:
+          description: Static files component configuration.
+          $ref: '#/components/schemas/FilesConfig'
       description: A response containing runtime information about the application.
     GetUserResponse:
       required:
@@ -1371,6 +1360,26 @@ components:
           type:
             - 'null'
             - string
+    ShortenerConfig:
+      type: object
+      properties:
+        host:
+          type: string
+          description: The host for the shortener service.
+        prefix:
+          type: string
+          description: The prefix for the shortener service.
+        caseInsensitiveSlugs:
+          type: boolean
+          description: Whether short links are case-insensitive.
+        defaultSlugLength:
+          pattern: '^-?(?:0|[1-9]\d*)$'
+          type:
+            - integer
+            - string
+          description: Default length for random short URL slugs.
+          format: int32
+      description: Shortener component configuration.
     ShortLink:
       type: object
       properties:
