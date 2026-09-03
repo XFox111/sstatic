@@ -135,6 +135,12 @@ SSTATIC_OIDC_CLIENT_SECRET=
 
 # PLAUSIBLE_DOMAIN_NAME=
 # PLAUSIBLE_ENDPOINT=
+
+# WEBHOOK_ENDPOINT=
+# WEBHOOK_METHOD=
+# WEBHOOK_BODY_TEMPLATE_FILE=
+# Analytics__Webhook__Headers__X-Test=true
+# Analytics__Webhook__Headers__X-URL={{url}}
 ```
 
 ```jsonc [appsettings.json]
@@ -174,6 +180,15 @@ SSTATIC_OIDC_CLIENT_SECRET=
 		"Plausible": {
 			"DomainName": "",
 			"Endpoint": "https://plausible.io/api/event"
+		},
+		"Webhook": {
+			"Endpoint": "",
+			"Method": "GET",
+			"Headers": {
+				// "X-Test": "true",
+				// "X-URL": "{{url}}"
+			},
+			"BodyTemplateFile": ""
 		}
 	} */
 }

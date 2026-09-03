@@ -58,7 +58,7 @@ Once you've created your OIDC client, you will need to copy following values:
 ## Configure sstatic
 
 Now, you need to replace password authentication with OIDC OAuth.
-Go to your `.env` file (or `appsettings.json`) and update following lines:
+Go to your `.env`, `appsettings.json`, or `config.ini` file and update following lines:
 
 ::: code-group
 
@@ -88,6 +88,18 @@ SSTATIC_OIDC_CLIENT_SECRET=#YOUR_CLIENT_SECRET_HERE# # [!code ++]
 	},
 	...
 }
+```
+
+```ini [config.ini]
+[Auth:Password] ; [!code --]
+Username = admin ; [!code --]
+Password = ; [!code --]
+PasswordHash = password_hash ; [!code --]
+[Auth:Oidc] ; [!code ++]
+Configuration = YOUR_ODIC_DISCOVERY_URL_HERE ; [!code ++]
+ClientId = YOUR_CLIENT_ID_HERE ; [!code ++]
+ClientSecret = YOUR_CLIENT_SECRET_HERE ; [!code ++]
+...
 ```
 
 :::

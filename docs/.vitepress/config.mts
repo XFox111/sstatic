@@ -60,31 +60,31 @@ export default defineConfig({
 				items: [
 					{ text: "About sstatic", link: "/get-started/" },
 					{ text: "Installation", link: "/get-started/installation" },
-					{ text: "Reverse proxy", link: "/get-started/reverse-proxy" }
+					{ text: "Reverse proxy 🚧", link: "/get-started/reverse-proxy" }
 				]
 			},
 			{
 				text: "Configuration",
 				items: [
-					{ text: "Overview", link: "/configuration/overview" },
-					{ text: "Environment variables", link: "/configuration/environment-variables" },
-					{ text: "Configuration file", link: "/configuration/configuration-file" },
+					{ text: "Overview 🚧", link: "/configuration/" },
+					{ text: "Environment variables 🚧", link: "/configuration/environment-variables" },
+					{ text: "Configuration file 🚧", link: "/configuration/configuration-file" },
 				]
 			},
 			{
 				text: "Guides",
 				items: [
 					{ text: "OpenID Connect", link: "/guides/openid-connect" },
-					{ text: "Multiple domains", link: "/guides/multiple-domains" },
-					{ text: "Analytics", link: "/guides/analytics" },
-					{ text: "REST API", link: "/guides/rest-api" },
+					{ text: "Multiple domains 🚧", link: "/guides/multiple-domains" },
+					{ text: "Analytics 🚧", link: "/guides/analytics" },
+					{ text: "REST API 🚧", link: "/guides/rest-api" },
 					{ text: "Healthcheck", link: "/guides/healthcheck" },
 				]
 			},
 			{
 				text: "Reference",
 				items: [
-					{ text: "Route resoltuion", link: "/reference/routes" },
+					{ text: "Route resoltuion 🚧", link: "/reference/routes" },
 					{ text: "robots.txt", link: "/reference/robots" },
 				]
 			}
