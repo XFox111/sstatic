@@ -14,11 +14,8 @@ sstatic is a simple self-hosted URL shortener and a file server. A perfect compa
 	</a>
 </div>
 
-<picture>
-	<source media="(prefers-color-scheme: dark)" srcset="https://static.xfox111.net/projects/sstatic/sstatic-dark.webp">
-	<source media="(prefers-color-scheme: light)" srcset="https://static.xfox111.net/projects/sstatic/sstatic-light.webp">
-	<img alt="">
-</picture>
+<img src="https://static.xfox111.net/projects/sstatic/sstatic-dark.webp" alt="" class="dark-only" />
+<img src="https://static.xfox111.net/projects/sstatic/sstatic-light.webp" alt="" class="light-only" />
 
 ## Features
 - **Personalized URL shortener**: Create short links on your personal domain with a simple and easy-to-use interface
@@ -53,19 +50,13 @@ Visit the [Installation](/get-started/installation) page for instructions on how
 
 ## Screenshots
 
-<picture>
-	<source media="(prefers-color-scheme: dark)" srcset="/assets/shortener-dark.png">
-	<source media="(prefers-color-scheme: light)" srcset="/assets/shortener-light.png">
-	<img alt="">
-</picture>
+<img src="/../app/public/assets/screenshots/shortener-dark.png" alt="" class="dark-only" />
+<img src="/../app/public/assets/screenshots/shortener-light.png" alt="" class="light-only" />
 
 <br />
 
-<picture>
-	<source media="(prefers-color-scheme: dark)" srcset="/assets/files-dark.png">
-	<source media="(prefers-color-scheme: light)" srcset="/assets/files-light.png">
-	<img alt="">
-</picture>
+<img src="/../app/public/assets/screenshots/files-dark.png" alt="" class="dark-only" />
+<img src="/../app/public/assets/screenshots/files-light.png" alt="" class="light-only" />
 
 ## Contributing
 
