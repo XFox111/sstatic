@@ -1,7 +1,7 @@
-FROM node:latest AS node-builder
-
 ARG VERSION=0.0.0
 ARG COMMIT=unknown
+
+FROM node:latest AS node-builder
 
 WORKDIR /app
 COPY app/package.json ./
@@ -25,6 +25,9 @@ COPY --from=node-builder /app/dist ./wwwroot
 RUN dotnet publish SStatic.csproj --configuration Release --output build
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS runtime
+
+ARG VERSION
+ARG COMMIT
 
 ENV \
 	DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
