@@ -28,7 +28,7 @@ SSTATIC_SHORTENER_PREFIX=/s
 SSTATIC_FILES_PREFIX=/static
 ```
 
-You can customize variables as needed. The `SSTATIC_APP_PREFIX` variable specifies the base path for the admin app, while `SSTATIC_SHORTENER_PREFIX` and `SSTATIC_FILES_PREFIX` specify paths for the shortener and file server, respectively. It is recommended to use different paths for each service to avoid URL collision when serving under the same domain. See [Route resolution](/reference/route-resolution) for more information.
+You can customize variables as needed. The `SSTATIC_APP_PREFIX` variable specifies the base path for the admin app, while `SSTATIC_SHORTENER_PREFIX` and `SSTATIC_FILES_PREFIX` specify paths for the shortener and file server, respectively. It is recommended to use different paths for each service to avoid URL collision when serving under the same domain. See [Route resolution](/reference/routes) for more information.
 
 Alternatively, you can configure sstatic to serve each component under its own domain:
 
