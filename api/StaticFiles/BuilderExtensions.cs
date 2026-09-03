@@ -20,7 +20,7 @@ public static class BuilderExtensions
 		Directory.CreateDirectory(filesRoot);
 
 		return services
-			.AddSingleton(configuration.Get<FilesConfig>() ?? throw new ArgumentNullException(nameof(configuration)))
+			.AddSingleton(configuration.Get<FilesConfig>() ?? new())
 			.AddKeyedSingleton<PhysicalFileProvider>("files", (sp, key) => new(filesRoot))
 			.AddScoped<FileInfoProvider>();
 	}
