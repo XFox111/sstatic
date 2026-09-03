@@ -11,9 +11,9 @@
 		<InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.EntityFrameworkCore.GeneratedInterceptors</InterceptorsNamespaces>
 	</PropertyGroup>
 
-	<!-- Copy geoip.mmdb to the output directory -->
+	<!-- Copy geoip.mmdb to the output directory if it exists -->
 	<ItemGroup>
-		<Content Include="geoip.mmdb">
+		<Content Include="geoip.mmdb" Condition="Exists('geoip.mmdb')">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
