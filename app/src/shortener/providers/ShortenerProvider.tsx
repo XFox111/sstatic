@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import { type Tag, links as linksApi, tags as tagsApi } from "../../api";
 import type { ShortLink } from "../../api/links";
 import type { DialogContextType } from "../../contexts/DialogContext";
@@ -15,7 +14,6 @@ export default function ShortenerProvider({ children }: React.PropsWithChildren)
 	const [isLoading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
 	const [links, setLinks] = useState<ShortLink[]>([]);
-	const navigate = useNavigate();
 	const [tags, setTags] = useState<Tag[]>([]);
 
 	const refresh = useCallback(async (): Promise<void> =>
@@ -132,15 +130,20 @@ export default function ShortenerProvider({ children }: React.PropsWithChildren)
 
 	useEffect(() =>
 	{
+		if (isLoading)
+			return;
+
 		const url: URL = new URL(window.location.href);
 		const sharedUrl: string | null = url.searchParams.get("url");
+
+		console.log("Shared URL: ", sharedUrl);
 
 		if (sharedUrl)
 		{
 			createLink({ suggestedUrl: sharedUrl });
-			navigate(url.pathname, { replace: true });
+			window.history.replaceState(null, "", url.pathname);
 		}
-	}, [createLink, navigate]);
+	}, [createLink, isLoading]);
 
 	return (
 		<ShortenerContext.Provider

@@ -34,13 +34,15 @@ public static partial class SpaMiddleware
 			if (context.GetEndpoint()?.RequestDelegate is not null)
 				return next();
 
-			if (context.Request.Path.Value?.StartsWith(path, StringComparison.OrdinalIgnoreCase) is not true)
+			string? requestPath = context.Request.Path.Value;
+
+			if (requestPath?.StartsWith(path, StringComparison.OrdinalIgnoreCase) is not true)
 				return next();
 
-			if (!context.Request.Path.Value!.EndsWith('/'))
+			if (path is not "/" && requestPath.Equals(path, StringComparison.OrdinalIgnoreCase))
 			{
 				context.Response.StatusCode = StatusCodes.Status302Found;
-				context.Response.Headers.Location = context.Request.Path.Value + '/';
+				context.Response.Headers.Location = context.Request.Path.Value + '/' + context.Request.QueryString;
 				return Task.CompletedTask;
 			}
 
