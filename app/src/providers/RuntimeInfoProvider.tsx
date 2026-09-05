@@ -48,6 +48,8 @@ function getUrl(host: string, prefix: string): string
 
 	url += "/";
 
+	prefix = prefix.replaceAll(/(^\/+)|(\/+$)/g, "");
+
 	if (prefix)
 		url += prefix + "/";
 
