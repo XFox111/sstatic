@@ -27,7 +27,7 @@ public class OperationTransformer : IOpenApiOperationTransformer
 			operation.Responses.TryAdd(StatusCodes.Status401Unauthorized.ToString(), new OpenApiResponse
 			{
 				Description = "Authentication is required.",
-				Content = new Dictionary<string, OpenApiMediaType>
+				Content = new Dictionary<string, IOpenApiMediaType>
 				{
 					["application/problem+json"] = new OpenApiMediaType
 					{
@@ -39,7 +39,7 @@ public class OperationTransformer : IOpenApiOperationTransformer
 			operation.Responses.TryAdd(StatusCodes.Status403Forbidden.ToString(), new OpenApiResponse
 			{
 				Description = "Authenticated user is not allowed to access this resource.",
-				Content = new Dictionary<string, OpenApiMediaType>
+				Content = new Dictionary<string, IOpenApiMediaType>
 				{
 					["application/problem+json"] = new OpenApiMediaType
 					{
@@ -107,11 +107,10 @@ public class OperationTransformer : IOpenApiOperationTransformer
 
 	private static OpenApiMediaType? GetMediaTypeOrDefault(OpenApiOperation operation, int statusCode, string mediaType)
 	{
-		IDictionary<string, OpenApiMediaType>? content = operation.Responses?.GetValueOrDefault(statusCode.ToString())?.Content;
+		IDictionary<string, IOpenApiMediaType>? content = operation.Responses?.GetValueOrDefault(statusCode.ToString())?.Content;
 
-		if (content?.ContainsKey(mediaType) == true)
-			return content[mediaType];
-
-		return null;
+		return content?.ContainsKey(mediaType) == true
+			? content[mediaType] as OpenApiMediaType
+			: null;
 	}
 }

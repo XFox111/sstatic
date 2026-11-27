@@ -42,7 +42,7 @@ public static partial class FileEndpoints
 			.WithName("CreateFile")
 			.WithSummary("Create a new file or directory")
 			.WithDescription("Create a an empty file or directory in the specified parent directory.")
-			.WithStatusCode<DirectoryDetails, FileDetails>(StatusCodes.Status201Created, "Item created successfully.")
+			.WithStatusCode<ItemDetails>(StatusCodes.Status201Created, "Item created successfully.")
 			.WithProblem(StatusCodes.Status400BadRequest, "Item already exists.")
 			.WithProblem(StatusCodes.Status404NotFound, "Parent directory not found.");
 }

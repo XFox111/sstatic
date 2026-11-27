@@ -28,6 +28,6 @@ public static partial class FileEndpoints
 			.WithName("GetFileInfo")
 			.WithSummary("Get file or directory information")
 			.WithDescription("Retrieve information about a file or directory on the specified path.")
-			.WithStatusCode<FileDetails, DirectoryDetails>(StatusCodes.Status200OK, "File or directory information retrieved successfully.")
+			.WithStatusCode<ItemDetails>(StatusCodes.Status200OK, "File or directory information retrieved successfully.")
 			.WithProblem(StatusCodes.Status404NotFound, "File or directory not found on specified path.");
 }

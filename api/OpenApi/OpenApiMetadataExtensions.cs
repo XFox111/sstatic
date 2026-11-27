@@ -59,37 +59,5 @@ public static class OpenApiMetadataExtensions
 			{
 				Description = description
 			});
-
-		/// <summary>
-		/// Adds a status code response with a specific content type to the route handler.
-		/// </summary>
-		/// <typeparam name="T1">The type of the response.</typeparam>
-		/// <typeparam name="T2">The type of the response.</typeparam>
-		/// <param name="statusCode">The status code of the response.</param>
-		/// <param name="description">The description of the response.</param>
-		/// <returns>The updated route handler builder.</returns>
-		public RouteHandlerBuilder WithStatusCode<T1, T2>(int statusCode, string? description = null) =>
-			builder
-				.WithMetadata(new ProducesResponseTypeAttribute<T1>(statusCode)
-				{
-					Description = description
-				})
-				.AddOpenApiOperationTransformer(async (operation, context, ct) =>
-				{
-					operation.Responses?[statusCode.ToString()].Content?["application/json"].Schema = new OpenApiSchema()
-					{
-						OneOf =
-						[
-							new OpenApiSchemaReference(typeof(T1).Name)
-							{
-								Title = typeof(T1).Name
-							},
-							new OpenApiSchemaReference(typeof(T2).Name)
-							{
-								Title = typeof(T2).Name
-							}
-						]
-					};
-				});
 	}
 }

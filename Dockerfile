@@ -12,7 +12,7 @@ RUN npm run build
 
 RUN sed -i 's|<base href="/" />|<base href="." />|' dist/index.html
 
-FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS dotnet-builder
+FROM mcr.microsoft.com/dotnet/sdk:11.0-alpine AS dotnet-builder
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ COPY api/ ./
 COPY --from=node-builder /app/dist ./wwwroot
 RUN dotnet publish SStatic.csproj --configuration Release --output build
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:11.0-alpine AS runtime
 
 ARG VERSION
 ARG COMMIT

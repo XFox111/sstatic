@@ -78,7 +78,7 @@ public static partial class FileEndpoints
 			.WithName("UpdateFile")
 			.WithSummary("Update a file or directory")
 			.WithDescription("Move or rename a file or directory on the specified path, or update text file's content.")
-			.WithStatusCode<FileDetails, DirectoryDetails>(StatusCodes.Status201Created, "File or directory moved successfully.")
+			.WithStatusCode<ItemDetails>(StatusCodes.Status201Created, "File or directory moved successfully.")
 			.WithStatusCode<FileDetails>(StatusCodes.Status200OK, "File's content updated successfully.")
 			.WithProblem(StatusCodes.Status404NotFound, "File or directory not found on specified path.")
 			.WithValidationProblem();
