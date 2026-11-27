@@ -1,4 +1,4 @@
-openapi: '3.1.1'
+openapi: '3.2.0'
 info:
   title: SStatic | v1
   description: "SStatic is a simple static file and link shortener server.\n\n## Authentication\nSome endpoints require authentication. SStatic is configured to use OpenID Connect (OIDC) for authentication.\nYou can obtain a JWT bearer token from your OIDC provider and include it in the `Authorization` header of your requests.\n\nYou can use [OAuth 2.0 Playground](https://oauthlabs.com/) to obtain a JWT token from your identity provider.\n\nJWT tokens are used only for testing or automation purposes. For regular usage, SStatic uses cookie-based authentication with OIDC."
@@ -8,7 +8,7 @@ info:
   version: 1.0.0
   summary: API documentation for SStatic server.
 servers:
-  - url: http://localhost:8080/
+  - url: http://localhost:8080
 paths:
   /auth/user:
     get:
@@ -54,6 +54,8 @@ paths:
               $ref: '#/components/schemas/LoginRequest'
         required: true
       responses:
+        '200':
+          description: User successfully logged in.
         '400':
           description: Incorrect username or password.
           content:
@@ -69,8 +71,6 @@ paths:
                   field:string:
                     - error:string
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
-        '200':
-          description: User successfully logged in.
   /auth/oidc-signin:
     post:
       tags:
@@ -358,18 +358,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ShortLink'
-        '404':
-          description: Link not found.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-              example:
-                type: https://tools.ietf.org/html/rfc9110#section-15.5.5
-                title: Not Found
-                status: 404
-                detail: string
-                traceId: 00-00000000000000000000000000000000-0000000000000000-00
         '400':
           description: One or more validation errors occurred.
           content:
@@ -384,6 +372,18 @@ paths:
                 errors:
                   field:string:
                     - error:string
+                traceId: 00-00000000000000000000000000000000-0000000000000000-00
+        '404':
+          description: Link not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: https://tools.ietf.org/html/rfc9110#section-15.5.5
+                title: Not Found
+                status: 404
+                detail: string
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
         '401':
           description: Authentication is required.
@@ -768,11 +768,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - title: FileDetails
-                    $ref: '#/components/schemas/FileDetails'
-                  - title: DirectoryDetails
-                    $ref: '#/components/schemas/DirectoryDetails'
+                $ref: '#/components/schemas/ItemDetails'
         '404':
           description: File or directory not found on specified path.
           content:
@@ -835,11 +831,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - title: DirectoryDetails
-                    $ref: '#/components/schemas/DirectoryDetails'
-                  - title: FileDetails
-                    $ref: '#/components/schemas/FileDetails'
+                $ref: '#/components/schemas/ItemDetails'
         '400':
           description: Item already exists.
           content:
@@ -913,6 +905,7 @@ paths:
               type: object
               properties:
                 file:
+                  description: The file to upload.
                   $ref: '#/components/schemas/IFormFile'
         required: true
       responses:
@@ -979,34 +972,18 @@ paths:
               $ref: '#/components/schemas/UpdateFileRequest'
         required: true
       responses:
-        '201':
-          description: File or directory moved successfully.
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - title: FileDetails
-                    $ref: '#/components/schemas/FileDetails'
-                  - title: DirectoryDetails
-                    $ref: '#/components/schemas/DirectoryDetails'
         '200':
           description: File's content updated successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FileDetails'
-        '404':
-          description: File or directory not found on specified path.
+        '201':
+          description: File or directory moved successfully.
           content:
-            application/problem+json:
+            application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
-              example:
-                type: https://tools.ietf.org/html/rfc9110#section-15.5.5
-                title: Not Found
-                status: 404
-                detail: string
-                traceId: 00-00000000000000000000000000000000-0000000000000000-00
+                $ref: '#/components/schemas/ItemDetails'
         '400':
           description: One or more validation errors occurred.
           content:
@@ -1021,6 +998,18 @@ paths:
                 errors:
                   field:string:
                     - error:string
+                traceId: 00-00000000000000000000000000000000-0000000000000000-00
+        '404':
+          description: File or directory not found on specified path.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: https://tools.ietf.org/html/rfc9110#section-15.5.5
+                title: Not Found
+                status: 404
+                detail: string
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
         '401':
           description: Authentication is required.
@@ -1062,18 +1051,6 @@ paths:
       responses:
         '204':
           description: File or directory deleted successfully.
-        '404':
-          description: File or directory not found on specified path.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-              example:
-                type: https://tools.ietf.org/html/rfc9110#section-15.5.5
-                title: Not Found
-                status: 404
-                detail: string
-                traceId: 00-00000000000000000000000000000000-0000000000000000-00
         '400':
           description: Cannot delete root directory.
           content:
@@ -1088,6 +1065,18 @@ paths:
                 errors:
                   field:string:
                     - error:string
+                traceId: 00-00000000000000000000000000000000-0000000000000000-00
+        '404':
+          description: File or directory not found on specified path.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: https://tools.ietf.org/html/rfc9110#section-15.5.5
+                title: Not Found
+                status: 404
+                detail: string
                 traceId: 00-00000000000000000000000000000000-0000000000000000-00
         '401':
           description: Authentication is required.
@@ -1116,6 +1105,8 @@ paths:
 components:
   schemas:
     CreateFileRequest:
+      examples:
+        - name: projects
       required:
         - name
         - type
@@ -1131,8 +1122,6 @@ components:
           description: The type of the new item to create.
           $ref: '#/components/schemas/ItemType'
       description: A request to create a new item.
-      example:
-        name: projects
     DirectoryDetails:
       required:
         - name
@@ -1142,35 +1131,21 @@ components:
       type: object
       properties:
         type:
-          description: Gets the type of the directory child.
           $ref: '#/components/schemas/ItemType'
         name:
           type: string
-          description: The name of the file.
         path:
           type: string
-          description: The path of the file.
         createdAt:
           type: string
-          description: The creation time of the file.
           format: date-time
         updatedAt:
           type: string
-          description: The last update time of the file.
           format: date-time
         children:
           type:
             - 'null'
             - array
-          description: The children of the directory. `null` if presented as a child.
-      description: The details of a directory.
-      example:
-        name: example
-        path: path/to/example
-        createdAt: '2023-01-01T00:00:00Z'
-        updatedAt: '2023-01-01T00:00:00Z'
-        children: [ ]
-        type: directory
     FileDetails:
       required:
         - name
@@ -1182,40 +1157,25 @@ components:
       type: object
       properties:
         type:
-          description: Gets the type of the directory child.
           $ref: '#/components/schemas/ItemType'
         name:
           type: string
-          description: The name of the file.
         path:
           type: string
-          description: The path of the file.
         createdAt:
           type: string
-          description: The creation time of the file.
           format: date-time
         updatedAt:
           type: string
-          description: The last update time of the file.
           format: date-time
         size:
           pattern: '^-?(?:0|[1-9]\d*)$'
           type:
             - integer
             - string
-          description: The size of the file.
           format: int64
         mime:
           type: string
-          description: The detected MIME-type of the file.
-      description: The details of a file.
-      example:
-        name: example.txt
-        path: path/to/example.txt
-        size: 1024
-        createdAt: '2023-01-01T00:00:00Z'
-        updatedAt: '2023-01-01T00:00:00Z'
-        type: file
     FilesConfig:
       type: object
       properties:
@@ -1295,6 +1255,8 @@ components:
           format: uri
       description: A response containing user information.
     HealthResponse:
+      examples:
+        - status: healthy
       required:
         - status
       type: object
@@ -1303,8 +1265,6 @@ components:
           description: The health status of the application.
           $ref: '#/components/schemas/HealthStatus'
       description: A response containing the health status of the application.
-      example:
-        status: healthy
     HealthStatus:
       enum:
         - unhealthy
@@ -1313,12 +1273,20 @@ components:
     IFormFile:
       type: string
       format: binary
+    ItemDetails:
+      type: object
+      anyOf:
+        - $ref: '#/components/schemas/FileDetails'
+        - $ref: '#/components/schemas/DirectoryDetails'
+      description: File storage item details (can be either FileDetails or DirectoryDetails)
     ItemType:
       enum:
         - file
         - directory
-      description: A type of a filesystem item.
     LoginRequest:
+      examples:
+        - username: user
+          password: qwerty123
       required:
         - username
         - password
@@ -1331,9 +1299,6 @@ components:
           type: string
           description: Plaintext password.
       description: Password login request body.
-      example:
-        username: user
-        password: qwerty123
     ProblemDetails:
       type: object
       properties:
@@ -1381,6 +1346,15 @@ components:
           format: int32
       description: Shortener component configuration.
     ShortLink:
+      examples:
+        - slug: my-link
+          redirectUrl: https://example.com
+          forwardQuery: false
+          isEnabled: true
+          tags: [ ]
+          createdAt: '2024-01-01T00:00:00Z'
+          updatedAt: '2024-01-01T00:00:00Z'
+          visits: 15
       type: object
       properties:
         slug:
@@ -1418,16 +1392,11 @@ components:
           description: Number of times the URL was visited.
           format: int32
       description: A short link in the system.
-      example:
-        slug: my-link
-        redirectUrl: https://example.com
-        forwardQuery: false
-        isEnabled: true
-        tags: [ ]
-        createdAt: '2024-01-01T00:00:00Z'
-        updatedAt: '2024-01-01T00:00:00Z'
-        visits: 15
     Tag:
+      examples:
+        - id: 1
+          name: My tag
+          color: '#2596be'
       type: object
       properties:
         id:
@@ -1447,11 +1416,9 @@ components:
           type: string
           description: The color of the tag as a hexadecimal string.
       description: A tag in the system.
-      example:
-        id: 1
-        name: My tag
-        color: '#2596be'
     UpdateFileRequest:
+      examples:
+        - content: 'Hello, World!'
       required:
         - destination
         - content
@@ -1469,8 +1436,6 @@ components:
             - string
           description: The content to update the file with.
       description: A request to update a file or directory.
-      example:
-        content: 'Hello, World!'
     UpdateLinkRequest:
       required:
         - slug
@@ -1505,6 +1470,9 @@ components:
           description: The tags associated with the short link.
       description: Request model for updating or creating a short link.
     UpdateTagRequest:
+      examples:
+        - name: My tag
+          color: '#2596be'
       required:
         - name
         - color
@@ -1520,9 +1488,6 @@ components:
           type: string
           description: The color of the tag in hex.
       description: A request to create or update a tag.
-      example:
-        name: My tag
-        color: '#2596be'
     ValidationProblemDetails:
       type: object
       properties:
